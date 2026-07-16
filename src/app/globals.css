@@ -1,0 +1,142 @@
+@import "tailwindcss";
+
+/* next-themes toggles the `dark` class on <html>; make Tailwind's dark:
+   variant follow that class instead of the OS media query. */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ---- Design tokens (shadcn-compatible naming) ------------------------- */
+/* Light theme */
+:root {
+  --radius: 0.65rem;
+
+  --background: #ffffff;
+  --foreground: #0a0a0b;
+
+  --card: #ffffff;
+  --card-foreground: #0a0a0b;
+
+  --popover: #ffffff;
+  --popover-foreground: #0a0a0b;
+
+  --primary: #6d4aff;
+  --primary-foreground: #ffffff;
+
+  --secondary: #f4f4f5;
+  --secondary-foreground: #18181b;
+
+  --muted: #f4f4f5;
+  --muted-foreground: #6b7280;
+
+  --accent: #f4f4f5;
+  --accent-foreground: #18181b;
+
+  --border: #e4e4e7;
+  --input: #e4e4e7;
+  --ring: #6d4aff;
+
+  /* semantic status colors (health score) */
+  --success: #16a34a;
+  --warning: #d97706;
+  --danger: #dc2626;
+
+  --grid: rgba(9, 9, 11, 0.04);
+}
+
+/* Dark theme (default for this product) */
+.dark {
+  --background: #08080a;
+  --foreground: #ededf0;
+
+  --card: #101013;
+  --card-foreground: #ededf0;
+
+  --popover: #101013;
+  --popover-foreground: #ededf0;
+
+  --primary: #8b6dff;
+  --primary-foreground: #08080a;
+
+  --secondary: #1a1a1f;
+  --secondary-foreground: #ededf0;
+
+  --muted: #161619;
+  --muted-foreground: #9a9aa5;
+
+  --accent: #1a1a1f;
+  --accent-foreground: #ededf0;
+
+  --border: #232329;
+  --input: #26262c;
+  --ring: #8b6dff;
+
+  --success: #22c55e;
+  --warning: #f59e0b;
+  --danger: #f87171;
+
+  --grid: rgba(255, 255, 255, 0.035);
+}
+
+/* ---- Expose tokens to Tailwind utilities ------------------------------ */
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-danger: var(--danger);
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+/* ---- Base styles ------------------------------------------------------- */
+* {
+  border-color: var(--border);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Subtle dotted-grid backdrop used on hero/landing surfaces */
+.bg-grid {
+  background-image: radial-gradient(var(--grid) 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--primary) 30%, transparent);
+}
+
+/* Thin, unobtrusive scrollbars */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--border) transparent;
+}
