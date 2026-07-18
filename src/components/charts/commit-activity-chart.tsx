@@ -25,8 +25,8 @@ function CustomTooltip({
   const d = payload[0].payload;
   return (
     <div className="rounded-lg border border-border bg-popover px-3 py-2 text-xs shadow-md">
-      <div className="font-medium">{d.commits} commits</div>
-      <div className="text-muted-foreground">{d.label}</div>
+      <div className="font-data font-semibold">{d.commits} commits</div>
+      <div className="font-data text-muted-foreground">{d.label}</div>
     </div>
   );
 }
@@ -62,7 +62,7 @@ export function CommitActivityChart({
       <BarChart data={data} margin={{ top: 8, right: 4, bottom: 0, left: -24 }}>
         <XAxis dataKey="label" hide />
         <YAxis
-          tick={{ fontSize: 11, fill: "var(--muted-foreground)" }}
+          tick={{ fontSize: 11, fill: "var(--muted-foreground)", fontFamily: "var(--font-mono)" }}
           axisLine={false}
           tickLine={false}
           width={48}

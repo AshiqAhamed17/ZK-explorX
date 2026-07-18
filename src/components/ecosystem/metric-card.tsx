@@ -6,6 +6,7 @@ interface MetricCardProps {
   value: string;
   icon?: ComponentType<{ className?: string }>;
   hint?: string;
+  accent?: string;
   className?: string;
 }
 
@@ -15,20 +16,26 @@ export function MetricCard({
   value,
   icon: Icon,
   hint,
+  accent,
   className,
 }: MetricCardProps) {
   return (
     <div
       className={cn(
-        "flex flex-col gap-1 rounded-lg border border-border bg-card p-4",
+        "flex flex-col gap-1.5 rounded-lg border border-border bg-card p-4",
         className,
       )}
     >
-      <div className="flex items-center gap-1.5 text-xs font-medium text-muted-foreground">
+      <div className="flex items-center gap-1.5 text-[11px] font-medium uppercase tracking-wide text-muted-foreground">
         {Icon ? <Icon className="size-3.5" /> : null}
         {label}
       </div>
-      <div className="text-2xl font-semibold tabular-nums">{value}</div>
+      <div
+        className="font-data text-2xl font-semibold leading-none"
+        style={accent ? { color: accent } : undefined}
+      >
+        {value}
+      </div>
       {hint ? (
         <div className="text-xs text-muted-foreground/70">{hint}</div>
       ) : null}
