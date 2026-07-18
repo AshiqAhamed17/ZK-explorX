@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { allSlugs, ecosystems, getEcosystem } from "./index";
+import { allProjects, allSlugs, ecosystems, getEcosystem, projectCategories } from "./index";
 
 /**
  * Importing the registry runs Zod validation on every ecosystem, so this
@@ -30,5 +30,15 @@ describe("ecosystem registry", () => {
         expect(r.repo).not.toHaveLength(0);
       }
     }
+  });
+
+  it("flattens every project into allProjects with an ecosystem back-reference", () => {
+    const total = ecosystems.reduce((n, e) => n + e.projects.length, 0);
+    expect(allProjects).toHaveLength(total);
+    for (const p of allProjects) {
+      expect(getEcosystem(p.ecosystemSlug)?.name).toBe(p.ecosystemName);
+      expect(p.category).not.toHaveLength(0);
+    }
+    expect(projectCategories.length).toBeGreaterThan(0);
   });
 });

@@ -20,6 +20,7 @@ export const starknet = {
   foundation: "StarkWare / Starknet Foundation",
   launchYear: 2021,
   launchTimeline: "Alpha mainnet Nov 2021 · STRK token Feb 2024",
+  defiLlamaSlug: "Starknet",
   links: {
     website: "https://www.starknet.io",
     docs: "https://docs.starknet.io",
@@ -39,5 +40,9 @@ export const starknet = {
     { name: "Ekubo", category: "DEX", description: "Concentrated-liquidity AMM built natively on Starknet.", url: "https://ekubo.org" },
     { name: "Argent", category: "Wallet", description: "Smart-contract wallet pioneering account abstraction on Starknet.", url: "https://www.argent.xyz" },
     { name: "Nostra", category: "Lending", description: "Money market and liquidity protocol on Starknet.", url: "https://nostra.finance" },
+    { name: "Braavos", category: "Wallet", description: "Smart-contract wallet for Starknet with a mobile-first UX.", url: "https://braavos.app" },
+    { name: "Vesu", category: "Lending", description: "Modular, permissionless lending protocol on Starknet.", url: "https://vesu.xyz" },
+    { name: "AVNU", category: "Infrastructure", description: "DEX aggregator and paymaster infrastructure on Starknet.", url: "https://avnu.fi" },
+    { name: "Dojo", category: "Gaming", description: "Provable onchain-game engine and toolchain for Starknet.", url: "https://www.dojoengine.org", github: "dojoengine/dojo" },
   ],
 } satisfies EcosystemInput;

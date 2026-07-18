@@ -34,6 +34,20 @@ export interface EcosystemMetrics {
   partial: boolean;
 }
 
+/** A single daily TVL observation from DefiLlama (date = unix seconds). */
+export interface TvlPoint {
+  date: number;
+  tvl: number;
+}
+
+/** Live TVL for one chain: the current value plus its daily history. */
+export interface TvlData {
+  /** Latest TVL in USD. */
+  current: number;
+  /** Daily {date,tvl} series, oldest-first. */
+  history: TvlPoint[];
+}
+
 /** Zeroed metrics used as a safe fallback when GitHub is unavailable. */
 export function emptyMetrics(repoCount = 0, projectCount = 0): EcosystemMetrics {
   return {

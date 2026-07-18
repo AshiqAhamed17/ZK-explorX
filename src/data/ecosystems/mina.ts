@@ -38,5 +38,8 @@ export const mina = {
     { name: "o1js", category: "Framework", description: "TypeScript framework for writing zkApps and general zk circuits.", url: "https://docs.minaprotocol.com/zkapps/o1js" },
     { name: "Auro Wallet", category: "Wallet", description: "Popular wallet for the Mina ecosystem.", url: "https://www.aurowallet.com" },
     { name: "Protokit", category: "Framework", description: "Framework for building app-chains on Mina.", url: "https://protokit.dev" },
+    { name: "Pallad", category: "Wallet", description: "Community-built wallet for Mina and zkApps.", url: "https://pallad.co" },
+    { name: "Zeko", category: "Infrastructure", description: "Layer 2 rollup for Mina built with o1js.", url: "https://zeko.io" },
+    { name: "MinaNFT", category: "NFT", description: "NFT standard and platform on Mina.", url: "https://minanft.io" },
   ],
 } satisfies EcosystemInput;

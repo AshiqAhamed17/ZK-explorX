@@ -20,6 +20,7 @@ export const scroll = {
   foundation: "Scroll Foundation",
   launchYear: 2023,
   launchTimeline: "Mainnet Oct 2023 · SCR token Oct 2024",
+  defiLlamaSlug: "Scroll",
   links: {
     website: "https://scroll.io",
     docs: "https://docs.scroll.io",
@@ -38,5 +39,8 @@ export const scroll = {
     { name: "Ambient", category: "DEX", description: "Zero-to-one DEX deployed on Scroll.", url: "https://ambient.finance" },
     { name: "Aave", category: "Lending", description: "Blue-chip lending market live on Scroll.", url: "https://aave.com" },
     { name: "Rho Markets", category: "Lending", description: "Native lending protocol on Scroll.", url: "https://www.rhomarkets.xyz" },
+    { name: "Nuri Exchange", category: "DEX", description: "ve(3,3) concentrated-liquidity DEX on Scroll.", url: "https://www.nuri.trade" },
+    { name: "Skydrome", category: "DEX", description: "AMM and liquidity hub on Scroll.", url: "https://skydrome.finance" },
+    { name: "Pencils Protocol", category: "Infrastructure", description: "Yield, staking, and rewards platform on Scroll.", url: "https://pencils.finance" },
   ],
 } satisfies EcosystemInput;

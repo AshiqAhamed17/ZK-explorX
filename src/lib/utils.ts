@@ -21,6 +21,17 @@ export function formatNumber(n: number | null | undefined): string {
   return new Intl.NumberFormat("en").format(n);
 }
 
+/** Compact USD, e.g. 1_234_567 -> "$1.2M". */
+export function formatUsd(n: number | null | undefined): string {
+  if (n === null || n === undefined || Number.isNaN(n)) return "—";
+  return new Intl.NumberFormat("en", {
+    style: "currency",
+    currency: "USD",
+    notation: "compact",
+    maximumFractionDigits: 1,
+  }).format(n);
+}
+
 /** Relative "time ago" from an ISO date string. */
 export function timeAgo(iso: string | null | undefined): string {
   if (!iso) return "—";

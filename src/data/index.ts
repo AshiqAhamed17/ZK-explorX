@@ -1,4 +1,9 @@
-import { EcosystemSchema, type Category, type Ecosystem } from "./schema";
+import {
+  EcosystemSchema,
+  type Category,
+  type Ecosystem,
+  type Project,
+} from "./schema";
 
 import { zksync } from "./ecosystems/zksync";
 import { starknet } from "./ecosystems/starknet";
@@ -68,3 +73,27 @@ export const CATEGORY_ORDER: Category[] = ["rollup", "zkvm", "privacy", "l1"];
 export const usedCategories: Category[] = CATEGORY_ORDER.filter((c) =>
   ecosystems.some((e) => e.category === c),
 );
+
+/** A project flattened with a back-reference to its ecosystem (Project Explorer). */
+export interface EnrichedProject extends Project {
+  ecosystemSlug: string;
+  ecosystemName: string;
+  glyph: string;
+}
+
+/** Every project across all ecosystems, for the /projects explorer. */
+export const allProjects: EnrichedProject[] = ecosystems.flatMap((e) =>
+  e.projects.map((p) => ({
+    ...p,
+    ecosystemSlug: e.slug,
+    ecosystemName: e.name,
+    glyph: e.glyph,
+  })),
+);
+
+/** Distinct project categories present, sorted by frequency then name. */
+export const projectCategories: string[] = Array.from(
+  allProjects.reduce((m, p) => m.set(p.category, (m.get(p.category) ?? 0) + 1), new Map<string, number>()),
+)
+  .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
+  .map(([c]) => c);

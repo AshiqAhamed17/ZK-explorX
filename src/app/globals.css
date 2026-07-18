@@ -4,76 +4,99 @@
    variant follow that class instead of the OS media query. */
 @custom-variant dark (&:where(.dark, .dark *));
 
-/* ---- Design tokens (shadcn-compatible naming) ------------------------- */
-/* Light theme */
+/* =====================================================================
+   Proof Terminal — a precise dark analytics instrument.
+   Boldness is spent in one place: the per-ecosystem identity colors
+   (--eco-*), used consistently across every chart, table, and badge.
+   Everything else stays quiet: ink canvas, hairline grid, mono numerics.
+   ===================================================================== */
+
+/* ---- Light theme (supported, but dark is the product) ----------------- */
 :root {
-  --radius: 0.65rem;
+  --radius: 0.5rem;
 
   --background: #ffffff;
-  --foreground: #0a0a0b;
+  --foreground: #0b0b0c;
 
   --card: #ffffff;
-  --card-foreground: #0a0a0b;
-
+  --card-foreground: #0b0b0c;
   --popover: #ffffff;
-  --popover-foreground: #0a0a0b;
+  --popover-foreground: #0b0b0c;
 
-  --primary: #6d4aff;
+  --primary: #5b3df5;
   --primary-foreground: #ffffff;
 
-  --secondary: #f4f4f5;
+  --secondary: #f5f5f6;
   --secondary-foreground: #18181b;
-
-  --muted: #f4f4f5;
-  --muted-foreground: #6b7280;
-
-  --accent: #f4f4f5;
+  --muted: #f5f5f6;
+  --muted-foreground: #62636a;
+  --accent: #f2f2f4;
   --accent-foreground: #18181b;
 
-  --border: #e4e4e7;
-  --input: #e4e4e7;
-  --ring: #6d4aff;
+  --border: #e6e6e9;
+  --input: #e0e0e4;
+  --ring: #5b3df5;
 
-  /* semantic status colors (health score) */
-  --success: #16a34a;
-  --warning: #d97706;
-  --danger: #dc2626;
+  --success: #0f9d3a;
+  --warning: #c77b06;
+  --danger: #d83a3a;
 
-  --grid: rgba(9, 9, 11, 0.04);
+  --grid: rgba(9, 9, 11, 0.05);
+
+  /* per-ecosystem identity (dataviz validated categorical, light steps) */
+  --eco-zksync: #2a78d6;
+  --eco-aleo: #1baf7a;
+  --eco-scroll: #eda100;
+  --eco-risc-zero: #008300;
+  --eco-polygon-zkevm: #4a3aa7;
+  --eco-mina: #e34948;
+  --eco-aztec: #e87ba4;
+  --eco-starknet: #eb6834;
+  --eco-linea: #0e8fa0;
+  --eco-sp1: #5f8f10;
 }
 
-/* Dark theme (default for this product) */
+/* ---- Dark theme (default) --------------------------------------------- */
 .dark {
-  --background: #08080a;
-  --foreground: #ededf0;
+  --background: #0a0b0c;
+  --foreground: #ecedee;
 
-  --card: #101013;
-  --card-foreground: #ededf0;
+  --card: #111214;
+  --card-foreground: #ecedee;
+  --popover: #141518;
+  --popover-foreground: #ecedee;
 
-  --popover: #101013;
-  --popover-foreground: #ededf0;
+  --primary: #7c6cff;
+  --primary-foreground: #ffffff;
 
-  --primary: #8b6dff;
-  --primary-foreground: #08080a;
+  --secondary: #17181b;
+  --secondary-foreground: #ecedee;
+  --muted: #141518;
+  --muted-foreground: #9ba0a6;
+  --accent: #191a1e;
+  --accent-foreground: #ecedee;
 
-  --secondary: #1a1a1f;
-  --secondary-foreground: #ededf0;
-
-  --muted: #161619;
-  --muted-foreground: #9a9aa5;
-
-  --accent: #1a1a1f;
-  --accent-foreground: #ededf0;
-
-  --border: #232329;
-  --input: #26262c;
-  --ring: #8b6dff;
+  --border: #26272b;
+  --input: #2a2b30;
+  --ring: #7c6cff;
 
   --success: #22c55e;
-  --warning: #f59e0b;
-  --danger: #f87171;
+  --warning: #f5a623;
+  --danger: #f2696d;
 
-  --grid: rgba(255, 255, 255, 0.035);
+  --grid: rgba(255, 255, 255, 0.04);
+
+  /* per-ecosystem identity (dataviz validated categorical, dark steps) */
+  --eco-zksync: #3987e5;
+  --eco-aleo: #199e70;
+  --eco-scroll: #c98500;
+  --eco-risc-zero: #008300;
+  --eco-polygon-zkevm: #9085e9;
+  --eco-mina: #e66767;
+  --eco-aztec: #d55181;
+  --eco-starknet: #d95926;
+  --eco-linea: #0f93a6;
+  --eco-sp1: #6a9a00;
 }
 
 /* ---- Expose tokens to Tailwind utilities ------------------------------ */
@@ -99,13 +122,14 @@
   --color-warning: var(--warning);
   --color-danger: var(--danger);
 
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 3px);
+  --radius-md: calc(var(--radius) - 1px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
 
   --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-display: var(--font-display);
+  --font-mono: var(--font-ibm-plex-mono);
 }
 
 /* ---- Base styles ------------------------------------------------------- */
@@ -125,18 +149,53 @@ body {
   text-rendering: optimizeLegibility;
 }
 
-/* Subtle dotted-grid backdrop used on hero/landing surfaces */
+/* Display face for headings that opt in */
+.font-display {
+  font-family: var(--font-display), var(--font-sans), sans-serif;
+}
+
+/* Tabular mono for all numeric/data readouts — the "terminal" identity */
+.font-data {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
+}
+
+/* Hairline plotting grid — a measurement surface, not decoration */
 .bg-grid {
-  background-image: radial-gradient(var(--grid) 1px, transparent 1px);
-  background-size: 22px 22px;
+  background-image:
+    linear-gradient(to right, var(--grid) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid) 1px, transparent 1px);
+  background-size: 44px 44px;
+}
+
+/* Faint radial vignette to seat the grid under content */
+.bg-grid-fade {
+  -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 40%, transparent 100%);
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 40%, transparent 100%);
 }
 
 ::selection {
-  background: color-mix(in srgb, var(--primary) 30%, transparent);
+  background: color-mix(in srgb, var(--primary) 32%, transparent);
+}
+
+/* Visible keyboard focus everywhere */
+:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+  border-radius: 3px;
 }
 
 /* Thin, unobtrusive scrollbars */
 * {
   scrollbar-width: thin;
   scrollbar-color: var(--border) transparent;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
 }

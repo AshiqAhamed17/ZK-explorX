@@ -63,8 +63,15 @@ export default function AboutPage() {
             each ecosystem&apos;s core repositories and cached for six hours.
           </li>
           <li>
+            <span className="font-medium text-foreground">Adoption.</span>{" "}
+            Total value locked for rollups comes live from DefiLlama, cached the
+            same way. It is tracked as a separate dimension — never folded into
+            the developer health score.
+          </li>
+          <li>
             <span className="font-medium text-foreground">Computed.</span>{" "}
-            The Health Score is derived from the live signals at request time.
+            The Health Score and the cohort-relative Adoption score are derived
+            from the live signals at request time.
           </li>
         </ul>
       </Section>
@@ -119,12 +126,23 @@ export default function AboutPage() {
         </ul>
       </Section>
 
+      <Section title="Why Adoption is separate">
+        <p>
+          A rollup with high TVL is not automatically &ldquo;healthier&rdquo;
+          than a zkVM or privacy network with none — TVL simply doesn&apos;t
+          apply to every design. So Adoption is scored only within the cohort of
+          ecosystems that actually have on-chain value, and shown alongside the
+          health score rather than blended into it. The premise holds: developer
+          health is ranked on developer signals.
+        </p>
+      </Section>
+
       <Section title="Roadmap">
         <p>
-          This is an MVP focused on a polished ecosystem directory and health
-          leaderboard. Planned next: a project explorer, historical trend
-          charts backed by a database, TVL and adoption metrics, full-text
-          search, and an interactive ecosystem knowledge graph.
+          Shipped so far: the health leaderboard, per-ecosystem dashboards, a
+          project explorer, live TVL and adoption, and side-by-side compare.
+          Planned next: historical health/star trends backed by a datastore,
+          full-text search, and an interactive ecosystem knowledge graph.
         </p>
       </Section>
 

@@ -20,6 +20,7 @@ export const polygonZkevm = {
   foundation: "Polygon Labs",
   launchYear: 2023,
   launchTimeline: "Mainnet beta Mar 2023 · CDK & AggLayer 2024",
+  defiLlamaSlug: "Polygon zkEVM",
   links: {
     website: "https://polygon.technology/polygon-zkevm",
     docs: "https://docs.polygon.technology/zkEVM/",
@@ -38,5 +39,8 @@ export const polygonZkevm = {
     { name: "Quickswap", category: "DEX", description: "Major DEX deployed on Polygon zkEVM.", url: "https://quickswap.exchange" },
     { name: "Balancer", category: "DEX", description: "Automated portfolio manager and DEX on Polygon zkEVM.", url: "https://balancer.fi" },
     { name: "0VIX", category: "Lending", description: "Lending market native to Polygon zkEVM.", url: "https://www.0vix.com" },
+    { name: "SushiSwap", category: "DEX", description: "Multi-chain DEX deployed on Polygon zkEVM.", url: "https://www.sushi.com" },
+    { name: "Pendle", category: "Infrastructure", description: "Yield-tokenization protocol available on Polygon zkEVM.", url: "https://www.pendle.finance" },
+    { name: "AggLayer", category: "Infrastructure", description: "Cross-chain settlement layer unifying Polygon CDK chains.", url: "https://polygon.technology/agglayer" },
   ],
 } satisfies EcosystemInput;

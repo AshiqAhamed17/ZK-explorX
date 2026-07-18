@@ -99,6 +99,9 @@ export const EcosystemSchema = z.object({
   launchYear: z.number().int().gte(2015).lte(2035),
   launchTimeline: z.string().min(1), // short milestone note
 
+  /** DefiLlama chain name for live TVL (rollups only), e.g. "ZKsync Era". */
+  defiLlamaSlug: z.string().optional(),
+
   links: LinksSchema,
 
   /** Curated repos that define this ecosystem's core developer activity. */

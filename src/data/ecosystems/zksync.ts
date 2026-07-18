@@ -20,6 +20,7 @@ export const zksync = {
   foundation: "Matter Labs / ZKsync Association",
   launchYear: 2023,
   launchTimeline: "zkSync Lite 2020 · Era mainnet Mar 2023 · ZK token Jun 2024",
+  defiLlamaSlug: "ZKsync Era",
   links: {
     website: "https://zksync.io",
     docs: "https://docs.zksync.io",
@@ -38,5 +39,9 @@ export const zksync = {
     { name: "SyncSwap", category: "DEX", description: "Leading AMM DEX on ZKsync Era.", url: "https://syncswap.xyz" },
     { name: "ZeroLend", category: "Lending", description: "Money market for ZKsync and the Elastic Network.", url: "https://zerolend.xyz" },
     { name: "Zerion", category: "Wallet", description: "Multi-chain wallet with ZKsync support.", url: "https://zerion.io" },
+    { name: "Maverick Protocol", category: "DEX", description: "Dynamic-distribution AMM live on ZKsync Era.", url: "https://www.mav.xyz" },
+    { name: "Aave", category: "Lending", description: "Blue-chip lending market deployed on ZKsync Era.", url: "https://aave.com" },
+    { name: "Rhino.fi", category: "Bridge", description: "Cross-chain bridge and DEX aggregator supporting ZKsync.", url: "https://rhino.fi" },
+    { name: "Holdstation", category: "Wallet", description: "Smart-contract wallet and perp DEX on ZKsync.", url: "https://holdstation.com" },
   ],
 } satisfies EcosystemInput;

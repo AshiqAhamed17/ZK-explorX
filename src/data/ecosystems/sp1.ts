@@ -35,6 +35,9 @@ export const sp1 = {
   projects: [
     { name: "Succinct Prover Network", category: "Infrastructure", description: "Decentralized network for generating SP1 proofs on demand.", url: "https://succinct.xyz" },
     { name: "SP1 Helios", category: "Infrastructure", description: "ZK Ethereum light client built with SP1.", url: "https://github.com/succinctlabs/sp1-helios" },
-    { name: "OP Succinct", category: "Infrastructure", description: "Turns any OP Stack chain into a ZK rollup using SP1.", url: "https://github.com/succinctlabs/op-succinct" },
+    { name: "OP Succinct", category: "Infrastructure", description: "Turns any OP Stack chain into a ZK rollup using SP1.", url: "https://github.com/succinctlabs/op-succinct", github: "succinctlabs/op-succinct" },
+    { name: "SP1 Reth", category: "Infrastructure", description: "Performant type-1 zkEVM reference built on SP1.", url: "https://github.com/succinctlabs/rsp", github: "succinctlabs/rsp" },
+    { name: "SP1 Blobstream", category: "Bridge", description: "ZK bridge relaying Celestia data-availability roots using SP1.", url: "https://github.com/succinctlabs/sp1-blobstream", github: "succinctlabs/sp1-blobstream" },
+    { name: "SP1 Contract Calls", category: "Tooling", description: "Library for verifiable Ethereum view calls proven with SP1.", url: "https://github.com/succinctlabs/sp1-contract-call", github: "succinctlabs/sp1-contract-call" },
   ],
 } satisfies EcosystemInput;

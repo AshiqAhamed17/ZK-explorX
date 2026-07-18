@@ -20,6 +20,7 @@ export const linea = {
   foundation: "Consensys",
   launchYear: 2023,
   launchTimeline: "Mainnet alpha Jul 2023 · LINEA token 2025",
+  defiLlamaSlug: "Linea",
   links: {
     website: "https://linea.build",
     docs: "https://docs.linea.build",
@@ -38,5 +39,8 @@ export const linea = {
     { name: "MetaMask", category: "Wallet", description: "Consensys' flagship wallet, natively integrated with Linea.", url: "https://metamask.io" },
     { name: "Lynex", category: "DEX", description: "ve(3,3) DEX and liquidity layer on Linea.", url: "https://www.lynex.fi" },
     { name: "Mendi Finance", category: "Lending", description: "Lending market native to Linea.", url: "https://mendi.finance" },
+    { name: "Nile Exchange", category: "DEX", description: "ve(3,3) DEX and liquidity layer on Linea.", url: "https://www.nile.build" },
+    { name: "ZeroLend", category: "Lending", description: "Money market on Linea and the wider ZK landscape.", url: "https://zerolend.xyz" },
+    { name: "Infura", category: "Infrastructure", description: "RPC and node infrastructure for Linea, by Consensys.", url: "https://www.infura.io" },
   ],
 } satisfies EcosystemInput;

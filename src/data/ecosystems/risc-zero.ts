@@ -36,5 +36,7 @@ export const riscZero = {
     { name: "Bonsai", category: "Infrastructure", description: "Managed proving service for the RISC Zero zkVM.", url: "https://risczero.com/bonsai" },
     { name: "Boundless", category: "Infrastructure", description: "Decentralized marketplace for verifiable compute.", url: "https://boundless.xyz" },
     { name: "Steel", category: "Tooling", description: "Library for verifiable EVM view calls with RISC Zero.", url: "https://risczero.com/steel" },
+    { name: "Zeth", category: "Tooling", description: "Type-1 zkEVM block builder and prover running in the zkVM.", url: "https://github.com/risc0/zeth", github: "risc0/zeth" },
+    { name: "Kailua", category: "Infrastructure", description: "Hybrid ZK rollup framework for OP Stack chains using RISC Zero.", url: "https://github.com/risc0/kailua", github: "risc0/kailua" },
   ],
 } satisfies EcosystemInput;

@@ -35,5 +35,8 @@ export const aztec = {
   projects: [
     { name: "Noir", category: "Language", description: "Domain-specific language for writing ZK circuits, used across the ecosystem.", url: "https://noir-lang.org" },
     { name: "Aztec.nr", category: "Framework", description: "Smart-contract framework for writing private Aztec contracts in Noir.", url: "https://docs.aztec.network" },
+    { name: "Barretenberg", category: "Infrastructure", description: "PLONK/UltraHonk proving backend powering Aztec and Noir.", url: "https://github.com/AztecProtocol/aztec-packages", github: "AztecProtocol/aztec-packages" },
+    { name: "Nargo", category: "Tooling", description: "Noir's package manager and build tool.", url: "https://noir-lang.org", github: "noir-lang/noir" },
+    { name: "zkPassport", category: "Identity", description: "Privacy-preserving identity and passport proofs built with Noir.", url: "https://zkpassport.id" },
   ],
 } satisfies EcosystemInput;

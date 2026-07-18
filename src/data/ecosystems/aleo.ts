@@ -38,5 +38,8 @@ export const aleo = {
     { name: "Leo", category: "Language", description: "Statically-typed language for writing private Aleo applications.", url: "https://leo-lang.org" },
     { name: "Puzzle", category: "Wallet", description: "Wallet and dApp platform for the Aleo ecosystem.", url: "https://puzzle.online" },
     { name: "Arcane Finance", category: "DEX", description: "Fully private DEX on Aleo.", url: "https://www.arcane.finance" },
+    { name: "Leo Wallet", category: "Wallet", description: "Popular browser wallet for the Aleo ecosystem.", url: "https://www.leo.app" },
+    { name: "Verulink", category: "Bridge", description: "Bridge connecting Aleo to Ethereum.", url: "https://verulink.com" },
+    { name: "Aleo Name Service", category: "Identity", description: "Human-readable names for Aleo addresses.", url: "https://aleonames.id" },
   ],
 } satisfies EcosystemInput;
