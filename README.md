@@ -39,6 +39,20 @@ Live developer metrics come from the GitHub API. Without a token you're limited 
 GITHUB_TOKEN=ghp_xxx
 ```
 
+### Noir toolchain (only needed if you're editing the ZK circuit)
+
+The ZK Proof Lab's circuit (`circuits/range_proof/`) is written in [Noir](https://noir-lang.org) and compiled with `nargo`, a separate Rust-based CLI — **not an npm package**. The compiled artifact (`circuits/range_proof/target/range_proof.json`) is committed to the repo, so **running the app, building it, or deploying to Vercel never requires `nargo`** — only the JS proving libraries (`noir_js`/`bb.js`) are needed at runtime, and those are plain npm packages.
+
+You only need `nargo` if you're changing the circuit itself:
+
+```bash
+curl -L https://raw.githubusercontent.com/noir-lang/noirup/refs/heads/main/install | bash
+noirup -v 1.0.0-beta.25   # pin to match this repo's noir_js/acvm_js/noirc_abi versions
+cd circuits/range_proof
+nargo test                 # run the circuit's unit tests
+nargo compile               # regenerate target/range_proof.json after any changes
+```
+
 ## Scripts
 
 | Script | Purpose |
@@ -52,6 +66,11 @@ GITHUB_TOKEN=ghp_xxx
 ## How it's organized
 
 ```
+circuits/
+└── range_proof/             # Noir circuit: proves a private value is in a public range
+    ├── Nargo.toml
+    ├── src/main.nr
+    └── target/range_proof.json   # compiled ACIR artifact, committed (no nargo needed at build time)
 src/
 ├── app/                     # routes: /, /ecosystems, /ecosystems/[slug], /about
 ├── components/
