@@ -1,5 +1,7 @@
 # ZK-explorX
 
+[![CI](https://github.com/AshiqAhamed17/ZK-explorX/actions/workflows/ci.yml/badge.svg)](https://github.com/AshiqAhamed17/ZK-explorX/actions/workflows/ci.yml)
+
 **The Zero-Knowledge ecosystem explorer — ranked by developer health, not token price.**
 
 ZK-explorX is a knowledge platform for exploring the ZK ecosystem (ZKsync, Starknet, Scroll, Polygon zkEVM, Linea, Aztec, Aleo, Mina, RISC Zero, SP1). It combines **curated protocol research** with **live GitHub developer activity** to answer the questions that actually matter to developers, researchers, and investors: which ecosystems are healthy, actively built, and worth your time?
