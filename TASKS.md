@@ -19,16 +19,17 @@ Stand this up *before* touching WASM/wallet bundling, so the risky phases are ca
 
 ## Phase 1 — ZK Proof Lab (flagship)
 
-- [ ] **1.1** Install Noir toolchain locally (`nargo`, via the official Noir installer — not npm) and scaffold `circuits/range_proof/` (`Nargo.toml` + `src/main.nr`) implementing "prove a private value lies in a public range without revealing the value." Compile with `nargo compile`; commit the circuit source **and** the compiled ACIR artifact. Document the local `nargo` install requirement in `README.md`.
+- [x] **1.1** Install Noir toolchain locally (`nargo`, via the official Noir installer — not npm) and scaffold `circuits/range_proof/` (`Nargo.toml` + `src/main.nr`) implementing "prove a private value lies in a public range without revealing the value." Compile with `nargo compile`; commit the circuit source **and** the compiled ACIR artifact. Document the local `nargo` install requirement in `README.md`.
   _Commit: "Add range-proof Noir circuit"_
-- [ ] **1.2** Install pinned npm deps: `@noir-lang/noir_js@1.0.0-beta.25`, `@noir-lang/acvm_js@1.0.0-beta.25`, `@noir-lang/noirc_abi@1.0.0-beta.25`, `@aztec/bb.js@5.1.0` (exact versions, no ranges).
+- [x] **1.2** Install pinned npm deps: `@noir-lang/noir_js@1.0.0-beta.25`, `@noir-lang/acvm_js@1.0.0-beta.25`, `@noir-lang/noirc_abi@1.0.0-beta.25`, `@aztec/bb.js@5.1.0` (exact versions, no ranges).
   _Commit: "Add Noir/Barretenberg proving dependencies"_
-- [ ] **1.3** Resolve Turbopack + WASM bundling for these packages in `next.config.ts` (try `outputFileTracingIncludes` first). Prove it works with a minimal throwaway test page that loads and instantiates the WASM. Document the `--webpack` fallback in `README.md` in case Turbopack regresses later.
-  _Commit: "Fix WASM bundling for Noir/Barretenberg under Turbopack"_
-- [ ] **1.4** Build `src/lib/circuits/proof.ts` — a thin wrapper around `noir_js.execute()` + `bb.js`'s `UltraHonkBackend` for generating and client-side-verifying a proof, given the compiled circuit artifact.
+- [x] **1.3** Resolve Turbopack + WASM bundling for these packages in `next.config.ts` (try `outputFileTracingIncludes` first). Prove it works with a minimal throwaway test page that loads and instantiates the WASM. Document the `--webpack` fallback in `README.md` in case Turbopack regresses later.
+  _Verified empirically with a real headless-Chromium (Playwright) run against both `npm run dev` and a production `npm run build && npm start` — full prove+verify round-trip succeeds with zero console errors and zero failed asset requests. **No `next.config.ts` change was needed**; Turbopack in Next 16.2.12 already emits and resolves the `noirc_abi`/`acvm_js` WASM correctly. No commit needed for this task (no code changed) — leaving the `--webpack` fallback documented in NewPlan.md's risk list in case a future Next/Turbopack upgrade regresses this."_
+- [x] **1.4** Build `src/lib/circuits/proof.ts` — a thin wrapper around `noir_js.execute()` + `bb.js`'s `UltraHonkBackend` for generating and client-side-verifying a proof, given the compiled circuit artifact.
   _Commit: "Add Noir/Barretenberg proof generation wrapper"_
-- [ ] **1.5** Build `src/workers/prove.worker.ts` running that wrapper off the main thread; define the worker's message protocol (input → progress updates → proof result / error).
+- [x] **1.5** Build `src/workers/prove.worker.ts` running that wrapper off the main thread; define the worker's message protocol (input → progress updates → proof result / error).
   _Commit: "Move proof generation into a Web Worker"_
+  _Also added `src/lib/circuits/use-prove-worker.ts`, a React hook wrapping the worker in a promise-based API — needed for 1.6 to actually consume the worker from the UI. Verified end-to-end with a real headless-Chromium run: prove → verify round-trip succeeds via the worker with zero console errors._
 - [ ] **1.6** Build the `/proof-lab` page + `ProofForm`/`ProofWorkerStatus` components: enter a private value, generate a proof, show progress, display the resulting proof + public inputs, and a "verify client-side" button (instant, no wallet).
   _Commit: "Add ZK Proof Lab page with client-side proving and verification"_
 - [ ] **1.7** Generate the Solidity verifier via `bb write_solidity_verifier`; commit `contracts/Verifier.sol` (generated, not hand-edited).
