@@ -30,8 +30,9 @@ Stand this up *before* touching WASM/wallet bundling, so the risky phases are ca
 - [x] **1.5** Build `src/workers/prove.worker.ts` running that wrapper off the main thread; define the worker's message protocol (input → progress updates → proof result / error).
   _Commit: "Move proof generation into a Web Worker"_
   _Also added `src/lib/circuits/use-prove-worker.ts`, a React hook wrapping the worker in a promise-based API — needed for 1.6 to actually consume the worker from the UI. Verified end-to-end with a real headless-Chromium run: prove → verify round-trip succeeds via the worker with zero console errors._
-- [ ] **1.6** Build the `/proof-lab` page + `ProofForm`/`ProofWorkerStatus` components: enter a private value, generate a proof, show progress, display the resulting proof + public inputs, and a "verify client-side" button (instant, no wallet).
+- [x] **1.6** Build the `/proof-lab` page + `ProofForm`/`ProofWorkerStatus` components: enter a private value, generate a proof, show progress, display the resulting proof + public inputs, and a "verify client-side" button (instant, no wallet).
   _Commit: "Add ZK Proof Lab page with client-side proving and verification"_
+  _Built: server `page.tsx` (metadata) + client `proof-lab.tsx` orchestrator, plus `proof-form.tsx` (masked private input + public range), `proof-status.tsx` (live proving pipeline), `proof-result.tsx` (public inputs, proof bytes + copy, client-side verify). Added a "Proof Lab" navbar link. Verified in real headless Chromium: happy path proves + verifies VALID, out-of-range value is soundly rejected with an educational message, zero console errors; reviewed screenshots of both states._
 - [ ] **1.7** Generate the Solidity verifier via `bb write_solidity_verifier`; commit `contracts/Verifier.sol` (generated, not hand-edited).
   _Commit: "Generate Solidity verifier contract"_
 - [ ] **1.8** Write `contracts/ProofRegistry.sol` — wraps the verifier, exposes `submitProof(proof, publicInputs)`, emits `ProofVerified(address indexed prover, bytes32 proofHash, uint256 timestamp)` on success. Add local compilation/testing setup (Foundry or a minimal Hardhat config — whichever is lighter to add).
@@ -126,7 +127,7 @@ Stand this up *before* touching WASM/wallet bundling, so the risky phases are ca
 | Phase | Status |
 |---|---|
 | 0 — CI safety net | ✅ Done |
-| 1 — ZK Proof Lab | ☐ Not started |
+| 1 — ZK Proof Lab | 🔨 In progress (1.1–1.6 done; 1.7–1.9 remaining: contracts + Sepolia deploy) |
 | 2 — Wallet integration | ☐ Not started |
 | 3 — Historical data | ☐ Not started |
 | 4 — Knowledge Graph | ☐ Not started |
