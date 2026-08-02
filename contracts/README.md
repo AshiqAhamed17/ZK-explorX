@@ -47,7 +47,30 @@ equals the committed `circuits/range_proof/target/vk/vk_hash`.
 - **Compiler:** needs **solc ≥ 0.8.27** (the file carries a `^0.8.27` pragma).
   Verified to compile with solc 0.8.28 + optimizer.
 
-### Next
+## `ProofRegistry.sol` — hand-written
 
-`ProofRegistry.sol` (task 1.8) wraps this verifier so submitting a proof is a
-real state-changing transaction; deployment to Sepolia is task 1.9.
+A thin wrapper that turns verification into a real transaction: `submitProof`
+calls the verifier, reverts with `InvalidProof` on failure, and on success
+records the submission (`proofCount`, `totalProofs`) and emits
+`ProofVerified(address indexed prover, bytes32 proofHash, uint256 timestamp)`.
+It declares its own minimal `IHonkVerifier` interface so it doesn't depend on
+the ~2,500-line generated verifier.
+
+## Build & test (Foundry)
+
+The Solidity here is built and tested with [Foundry](https://getfoundry.sh).
+`forge-std` is vendored as a git submodule, so after cloning:
+
+```bash
+git submodule update --init            # fetch lib/forge-std
+forge build                            # compiles Verifier.sol + ProofRegistry.sol
+forge test -vv                         # runs contracts/test/*.t.sol
+```
+
+`ProofRegistry` is unit-tested against a `MockHonkVerifier` (settable result),
+covering the emit/record path and the `InvalidProof` revert. Config lives in
+`foundry.toml` (src = `contracts`, tests = `contracts/test`, solc 0.8.28).
+
+## Next
+
+Deployment of both contracts to Sepolia (via a viem script) is task 1.9.

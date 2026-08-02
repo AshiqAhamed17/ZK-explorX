@@ -48,3 +48,8 @@ NewPlan.md
 TASKS.md
 plan.md
 
+# foundry (Solidity build artifacts)
+/contracts/out
+/contracts/cache
+/broadcast
+
