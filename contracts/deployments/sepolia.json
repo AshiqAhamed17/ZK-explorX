@@ -1,0 +1,20 @@
+{
+  "chain": "sepolia",
+  "chainId": 11155111,
+  "deployer": "0xb5A55d323d351b23ac154FF515BE6cB98A0349B2",
+  "contracts": {
+    "proofRegistry": "0x43d72f44622E6De811C626760004bA621ee474a9",
+    "honkVerifier": "0xca1B13809576a4103Ce306027fDB327ef577b382"
+  },
+  "libraries": {
+    "RelationsLib": "0x113496267316C6889bDEF24E7718d63c764981cD",
+    "ZKTranscriptLib": "0x671A73b3A1a05db430AC1e2b62d343a9DF158b89"
+  },
+  "transactions": {
+    "honkVerifier": "0xf6136788d7feffb6b99f21b2a9d97837001a97295a8647a205442fe791792485",
+    "proofRegistry": "0x0a79b1afac31771e1b4a9f764514baf83dccab5d330f947cc845754cdc6deddf",
+    "sampleSubmitProof": "0x1a4ac7f46e65fb771d2f9f2e845b15abb3195d6afac1945feb960a255587fad3"
+  },
+  "deployedAtBlock": 11421374,
+  "verified": "A real UltraHonk proof (value=25 in [18,120]) passes HonkVerifier.verify on-chain, and ProofRegistry.submitProof succeeded (status: success) emitting ProofVerified."
+}

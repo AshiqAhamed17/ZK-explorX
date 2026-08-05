@@ -9,7 +9,8 @@
     "lint": "eslint",
     "test": "vitest run",
     "test:watch": "vitest",
-    "data:validate": "vitest run src/data"
+    "data:validate": "vitest run src/data",
+    "deploy:sepolia": "tsx contracts/script/Deploy.ts"
   },
   "dependencies": {
     "@aztec/bb.js": "5.1.0",
@@ -26,6 +27,7 @@
     "react-dom": "19.2.4",
     "recharts": "^3.9.2",
     "tailwind-merge": "^3.6.0",
+    "viem": "2.55.10",
     "zod": "^4.4.3"
   },
   "devDependencies": {
@@ -38,6 +40,7 @@
     "eslint-config-next": "16.2.10",
     "playwright": "^1.62.0",
     "tailwindcss": "^4",
+    "tsx": "^4.23.6",
     "typescript": "^5",
     "vitest": "^4.1.10"
   }
