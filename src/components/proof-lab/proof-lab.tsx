@@ -8,12 +8,14 @@ import type { RangeProofInput } from "@/lib/circuits/proof";
 import { ProofForm } from "@/components/proof-lab/proof-form";
 import { ProofResult, type VerifyState } from "@/components/proof-lab/proof-result";
 import { ProofWorkerStatus } from "@/components/proof-lab/proof-status";
+import { SubmitOnChain } from "@/components/proof-lab/submit-onchain";
 
 export function ProofLab() {
   const { prove, verify, stage } = useProveWorker();
 
   const [busy, setBusy] = useState(false);
   const [proof, setProof] = useState<ProofData | null>(null);
+  const [proofGeneration, setProofGeneration] = useState(0);
   const [publicRange, setPublicRange] = useState<{ min: number; max: number } | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [verifyState, setVerifyState] = useState<VerifyState>("idle");
@@ -27,6 +29,7 @@ export function ProofLab() {
     try {
       const result = await prove(input);
       setProof(result);
+      setProofGeneration((g) => g + 1);
     } catch (e) {
       const outOfRange = input.value < input.min || input.value > input.max;
       setError(
@@ -101,6 +104,21 @@ export function ProofLab() {
         </section>
       </div>
 
+      {/* On-chain */}
+      {proof ? (
+        <section className="mt-4 rounded-xl border border-border bg-card p-5">
+          <h2 className="font-display text-sm font-medium">
+            <span className="font-data mr-2 text-primary">03</span>
+            Anchor on-chain
+          </h2>
+          <p className="mt-1 mb-4 text-xs text-muted-foreground">
+            Submit this proof to the <code className="font-data">ProofRegistry</code> contract on
+            Sepolia — a real transaction, verified by the deployed Solidity verifier.
+          </p>
+          <SubmitOnChain key={proofGeneration} proof={proof} />
+        </section>
+      ) : null}
+
       {/* What just happened */}
       <section className="mt-4 rounded-xl border border-border bg-card p-5">
         <h2 className="font-display text-sm font-medium">How it works</h2>
@@ -130,9 +148,9 @@ export function ProofLab() {
           ))}
         </div>
         <p className="mt-5 border-t border-border pt-4 text-xs text-muted-foreground">
-          <span className="font-medium text-foreground">Next up:</span> anchor a proof on-chain —
-          connect a wallet and submit it to a Solidity verifier contract on Sepolia. Coming in a
-          later update.
+          <span className="font-medium text-foreground">Go further:</span> connect a wallet and
+          submit your proof to a real Solidity verifier contract on Sepolia — it&apos;ll appear as
+          a genuine transaction on Etherscan, not just a local check.
         </p>
       </section>
     </div>
