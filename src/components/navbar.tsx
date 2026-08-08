@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { GitHubIcon } from "@/components/brand-icons";
 import { ThemeToggle } from "@/components/theme-toggle";
+import { ConnectWalletButton } from "@/components/wallet/connect-wallet-button";
 
 const NAV_LINKS = [
   { href: "/ecosystems", label: "Ecosystems" },
@@ -45,6 +46,9 @@ export function Navbar() {
           >
             <GitHubIcon className="size-4" />
           </a>
+          <div className="ml-1">
+            <ConnectWalletButton />
+          </div>
           <div className="ml-1">
             <ThemeToggle />
           </div>
