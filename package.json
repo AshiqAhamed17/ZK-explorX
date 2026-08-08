@@ -10,7 +10,10 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "data:validate": "vitest run src/data",
-    "deploy:sepolia": "tsx contracts/script/Deploy.ts"
+    "deploy:sepolia": "tsx contracts/script/Deploy.ts",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "drizzle-kit migrate",
+    "db:studio": "drizzle-kit studio"
   },
   "dependencies": {
     "@aztec/bb.js": "5.1.0",
