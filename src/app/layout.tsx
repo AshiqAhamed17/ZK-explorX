@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import { Geist, IBM_Plex_Mono, Space_Grotesk } from "next/font/google";
 import "./globals.css";
+import "@rainbow-me/rainbowkit/styles.css";
 import { ThemeProvider } from "@/components/theme-provider";
+import { Providers } from "@/app/providers";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
 
@@ -68,9 +70,11 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <Navbar />
-          <main className="flex-1">{children}</main>
-          <Footer />
+          <Providers>
+            <Navbar />
+            <main className="flex-1">{children}</main>
+            <Footer />
+          </Providers>
         </ThemeProvider>
       </body>
     </html>
