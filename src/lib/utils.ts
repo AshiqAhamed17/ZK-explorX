@@ -24,6 +24,19 @@ export function formatNumber(n: number | null | undefined): string {
 /** Compact USD, e.g. 1_234_567 -> "$1.2M". */
 export function formatUsd(n: number | null | undefined): string {
   if (n === null || n === undefined || Number.isNaN(n)) return "—";
+  // Below 1000, "compact" notation doesn't abbreviate anyway, but different
+  // Intl/ICU implementations (Node vs. browser) disagree on whether to show
+  // a trailing ".0" for it ($289 vs $289.0) — an SSR/client hydration
+  // mismatch. Sidestep the ambiguity: use plain whole-dollar formatting
+  // below 1000, and only reach for compact notation where abbreviation
+  // actually applies.
+  if (Math.abs(n) < 1000) {
+    return new Intl.NumberFormat("en", {
+      style: "currency",
+      currency: "USD",
+      maximumFractionDigits: 0,
+    }).format(n);
+  }
   return new Intl.NumberFormat("en", {
     style: "currency",
     currency: "USD",
