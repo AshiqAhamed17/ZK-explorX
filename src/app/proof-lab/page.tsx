@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { OnchainPulse } from "@/components/proof-lab/onchain-pulse";
 import { ProofLab } from "@/components/proof-lab/proof-lab";
 
 export const metadata: Metadata = {
@@ -23,6 +24,10 @@ export default function ProofLabPage() {
           like proving you&apos;re old enough without revealing your age — with a real proof
           generated entirely on your device.
         </p>
+      </div>
+
+      <div className="mt-6">
+        <OnchainPulse />
       </div>
 
       <div className="mt-8">
