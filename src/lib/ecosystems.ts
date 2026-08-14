@@ -1,9 +1,7 @@
 import { ecosystems } from "@/data";
 import type { Ecosystem } from "@/data/schema";
-import { scoreAdoption } from "@/lib/adoption";
-import { getTvlBySlug } from "@/lib/defillama";
-import { getMetricsBySlug } from "@/lib/github";
-import { scoreEcosystems, type HealthBreakdown } from "@/lib/health";
+import type { HealthBreakdown } from "@/lib/health";
+import { getTodaysSnapshots } from "@/lib/metrics/snapshot";
 import type { EcosystemMetrics, TvlData } from "@/types/metrics";
 
 /** An ecosystem joined with its live metrics, health breakdown, TVL, and rank. */
@@ -19,32 +17,14 @@ export interface RankedEcosystem {
 }
 
 /**
- * Load every ecosystem, fetch live GitHub metrics + DefiLlama TVL, compute
- * set-relative health scores and cohort-relative adoption scores, and return
- * them ranked best-first by health. All fetches are cached by Next.js (6h).
+ * Load every ecosystem, join it with today's computed snapshot (live GitHub
+ * metrics + DefiLlama TVL, health + adoption scores — shared with the daily
+ * cron via `getTodaysSnapshots`), and return them ranked best-first by
+ * health. All fetches are cached by Next.js (6h).
  */
 export async function getRankedEcosystems(): Promise<RankedEcosystem[]> {
-  const [metricsBySlug, tvlBySlug] = await Promise.all([
-    getMetricsBySlug(
-      ecosystems.map((e) => ({
-        slug: e.slug,
-        repos: e.repos,
-        projectCount: e.projects.length,
-      })),
-    ),
-    getTvlBySlug(
-      ecosystems.map((e) => ({ slug: e.slug, defiLlamaSlug: e.defiLlamaSlug })),
-    ),
-  ]);
-
-  const scored = scoreEcosystems(
-    ecosystems.map((e) => ({ slug: e.slug, metrics: metricsBySlug[e.slug] })),
-  );
-  const bySlug = new Map(scored.map((s) => [s.slug, s]));
-
-  const adoptionBySlug = scoreAdoption(
-    ecosystems.map((e) => ({ slug: e.slug, tvl: tvlBySlug[e.slug] })),
-  );
+  const snapshots = await getTodaysSnapshots();
+  const bySlug = new Map(snapshots.map((s) => [s.slug, s]));
 
   return ecosystems
     .map((ecosystem) => {
@@ -53,8 +33,8 @@ export async function getRankedEcosystems(): Promise<RankedEcosystem[]> {
         ecosystem,
         metrics: s.metrics,
         health: s.health,
-        tvl: tvlBySlug[ecosystem.slug],
-        adoption: adoptionBySlug[ecosystem.slug],
+        tvl: s.tvl,
+        adoption: s.adoption,
       };
     })
     .sort((a, b) => b.health.score - a.health.score)
