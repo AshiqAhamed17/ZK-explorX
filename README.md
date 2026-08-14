@@ -136,7 +136,11 @@ You don't need to — they're already deployed. To deploy your own copy:
 
 ## Deployment
 
-Deploys to Vercel with zero config. Set `GITHUB_TOKEN` as an environment variable in the Vercel project settings.
+Deploys to Vercel with zero config. Set `GITHUB_TOKEN`, `DATABASE_URL`, `NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID`, and `CRON_SECRET` as environment variables in the Vercel project settings (see `.env.example` for what each one is for).
+
+### Historical snapshots (cron)
+
+`vercel.json` registers a daily cron (`0 3 * * *`, UTC) hitting `/api/cron/snapshot`, which persists that day's health score + key metrics for every ecosystem to Postgres (`ecosystem_snapshots`) — the data source for the "health over time" charts. The route is a no-op if it's re-run for a date that already has rows, and it 401s unless called with `Authorization: Bearer $CRON_SECRET`, which Vercel sets automatically from the env var of the same name.
 
 ## Roadmap
 
