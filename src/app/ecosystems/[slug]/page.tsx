@@ -17,12 +17,14 @@ import { allSlugs, getEcosystem } from "@/data";
 import { CATEGORY_LABELS } from "@/data/schema";
 import { getRankedEcosystem } from "@/lib/ecosystems";
 import { getReposCore } from "@/lib/github";
+import { getHealthHistory } from "@/lib/metrics/history";
 import { ecoVar } from "@/lib/colors";
 import { healthBand } from "@/lib/health";
 import { formatCompact, formatNumber, formatUsd, timeAgo } from "@/lib/utils";
 import { Badge } from "@/components/ui/badge";
 import { CommitActivityChart } from "@/components/charts/commit-activity-chart";
 import { HealthRadar } from "@/components/charts/health-radar";
+import { HistoryLineChart } from "@/components/charts/history-line-chart";
 import { TvlAreaChart } from "@/components/charts/tvl-area-chart";
 import { HealthBreakdown } from "@/components/ecosystem/health-breakdown";
 import { HealthRing } from "@/components/ecosystem/health-score";
@@ -83,9 +85,10 @@ export default async function EcosystemPage({
   const e = getEcosystem(slug);
   if (!e) notFound();
 
-  const [ranked, repos] = await Promise.all([
+  const [ranked, repos, history] = await Promise.all([
     getRankedEcosystem(slug),
     getReposCore(e.repos),
+    getHealthHistory(slug),
   ]);
   if (!ranked) notFound();
 
@@ -212,6 +215,14 @@ export default async function EcosystemPage({
             Weighted components summing to the score
           </p>
           <HealthBreakdown health={health} />
+        </div>
+
+        <div className="mt-4 rounded-xl border border-border bg-card p-5">
+          <h3 className="font-display text-sm font-medium">Health over time</h3>
+          <p className="font-data mb-3 text-xs text-muted-foreground">
+            Daily snapshot, 0–100
+          </p>
+          <HistoryLineChart history={history} color={color} />
         </div>
       </section>
 
