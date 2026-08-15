@@ -7,6 +7,7 @@ const NAV_LINKS = [
   { href: "/ecosystems", label: "Ecosystems" },
   { href: "/projects", label: "Projects" },
   { href: "/compare", label: "Compare" },
+  { href: "/graph", label: "Graph" },
   { href: "/proof-lab", label: "Proof Lab" },
   { href: "/about", label: "Methodology" },
 ];
