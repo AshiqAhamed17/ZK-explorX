@@ -8,6 +8,9 @@ export interface GraphNodeData {
   label: string;
   slug?: string;
   description?: string;
+  /** UI-only, layered on after layout — true when a focus is active and this
+   * node isn't the focused node or one of its direct neighbors. */
+  dimmed?: boolean;
   [key: string]: unknown;
 }
 

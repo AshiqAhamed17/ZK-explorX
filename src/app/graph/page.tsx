@@ -16,7 +16,7 @@ export default function GraphPage() {
       <p className="mt-2 max-w-2xl text-muted-foreground">
         Every ecosystem, and the languages, virtual machines, proof systems, and
         shared proving libraries connecting them. Drag to pan, scroll to zoom,
-        click an ecosystem to open its page.
+        click a node to focus its connections, and filter by type below.
       </p>
 
       <div className="mt-8">
