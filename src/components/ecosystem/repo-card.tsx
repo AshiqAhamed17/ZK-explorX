@@ -33,7 +33,9 @@ export function RepoCard({ repo }: { repo: RepoCoreStat }) {
           <GitFork className="size-3.5" />
           {formatCompact(repo.forks)}
         </span>
-        <span className="hidden text-muted-foreground/70 md:inline">
+        {/* Relative time computed from Date.now() -- can legitimately
+            differ by a unit between SSG build time and client hydration. */}
+        <span className="hidden text-muted-foreground/70 md:inline" suppressHydrationWarning>
           {timeAgo(repo.pushedAt)}
         </span>
       </div>

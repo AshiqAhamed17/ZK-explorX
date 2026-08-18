@@ -33,6 +33,11 @@ export function MetricCard({
       <div
         className="font-data text-2xl font-semibold leading-none"
         style={accent ? { color: accent } : undefined}
+        // `value` is sometimes a relative-time string (`timeAgo`) computed
+        // from `Date.now()` — it can legitimately differ by a unit between
+        // SSG build time and client hydration. Harmless no-op for every
+        // other (non-time) value shown in this card.
+        suppressHydrationWarning
       >
         {value}
       </div>
