@@ -17,6 +17,9 @@ export async function GET(request: Request) {
   if (authHeader !== `Bearer ${process.env.CRON_SECRET}`) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
+  if (!db) {
+    return NextResponse.json({ error: "DATABASE_URL is not configured" }, { status: 500 });
+  }
 
   const date = new Date().toISOString().slice(0, 10);
   const snapshots = await getTodaysSnapshots();

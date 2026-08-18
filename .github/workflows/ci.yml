@@ -34,3 +34,11 @@ jobs:
           # workflow run (repo-scoped, no secret setup required) so the build's
           # live GitHub API calls don't hit the 60/hr anonymous rate limit.
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # RainbowKit's getDefaultConfig throws at render time if this is
+          # empty, and every page prerenders through the wallet provider tree
+          # -- so the build needs *a* non-empty value, not a working one. This
+          # is a placeholder, not a real WalletConnect project id; it's fine
+          # because CI never exercises the actual WalletConnect handshake.
+          # (It's also documented as public-by-design in .env.example, so
+          # there's nothing sensitive about hardcoding a value here either way.)
+          NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID: "00000000000000000000000000000000"

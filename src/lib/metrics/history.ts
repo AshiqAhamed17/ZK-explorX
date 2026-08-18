@@ -18,6 +18,7 @@ export interface HealthHistoryPoint {
  * render, so failures are logged and treated the same as "no history yet".
  */
 export async function getHealthHistory(slug: string): Promise<HealthHistoryPoint[]> {
+  if (!db) return [];
   try {
     return await db
       .select({
