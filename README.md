@@ -83,10 +83,11 @@ comparison" I could find was really just a TVL chart, and TVL tells you
 nothing about whether a codebase is alive. So I built the thing I actually
 wanted to look at.
 
-## Screenshots / demo
+## Demo
 
-🎥 A short demo GIF of the Proof Lab flow is coming — for now, the fastest way
-to see it is the [live app](https://zk-explorx.vercel.app/proof-lab).
+![ZK Proof Lab demo — generating and verifying a real zero-knowledge proof in the browser](docs/proof-lab-demo.gif)
+
+A real Noir circuit, compiled to UltraHonk, proving and verifying entirely client-side — no wallet needed for this part. Try it yourself at the [live app](https://zk-explorx.vercel.app/proof-lab), including the on-chain submission step this GIF stops short of (that needs a connected wallet).
 
 ## Tech stack
 
