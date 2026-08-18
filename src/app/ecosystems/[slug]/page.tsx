@@ -14,6 +14,8 @@ import {
   Users,
 } from "lucide-react";
 import { allSlugs, getEcosystem } from "@/data";
+import { ECOSYSTEM_PROOF_SYSTEM, ECOSYSTEM_VM } from "@/data/graph";
+import { getGlossaryTerm, type GlossaryTerm } from "@/data/glossary";
 import { CATEGORY_LABELS } from "@/data/schema";
 import { getRankedEcosystem } from "@/lib/ecosystems";
 import { getReposCore } from "@/lib/github";
@@ -61,11 +63,32 @@ const BAND_TEXT: Record<"success" | "warning" | "danger", string> = {
   danger: "text-danger",
 };
 
-function FactItem({ label, value }: { label: string; value: string }) {
+function FactItem({
+  label,
+  value,
+  glossaryTerms,
+}: {
+  label: string;
+  value: string;
+  glossaryTerms?: GlossaryTerm[];
+}) {
   return (
     <div className="flex flex-col gap-0.5 border-l-2 border-border pl-3">
       <dt className="text-xs text-muted-foreground">{label}</dt>
       <dd className="text-sm font-medium">{value}</dd>
+      {glossaryTerms && glossaryTerms.length > 0 ? (
+        <div className="mt-0.5 flex flex-wrap gap-x-2 gap-y-0.5">
+          {glossaryTerms.map((t) => (
+            <Link
+              key={t.id}
+              href={`/primitives#${t.id}`}
+              className="text-xs text-primary hover:underline"
+            >
+              {t.term} ↗
+            </Link>
+          ))}
+        </div>
+      ) : null}
     </div>
   );
 }
@@ -95,6 +118,13 @@ export default async function EcosystemPage({
   const { metrics, health, rank, tvl, adoption } = ranked;
   const band = healthBand(health.score);
   const color = ecoVar(e.slug);
+
+  const proofSystemTerms = (ECOSYSTEM_PROOF_SYSTEM[e.slug] ?? [])
+    .map(getGlossaryTerm)
+    .filter((t): t is GlossaryTerm => t !== undefined);
+  const vmTerms = (ECOSYSTEM_VM[e.slug] ?? [])
+    .map(getGlossaryTerm)
+    .filter((t): t is GlossaryTerm => t !== undefined);
 
   return (
     <div className="mx-auto max-w-6xl px-4 py-8 sm:px-6">
@@ -171,8 +201,8 @@ export default async function EcosystemPage({
 
       {/* Quick facts */}
       <dl className="mt-6 grid grid-cols-2 gap-4 rounded-xl border border-border bg-card p-5 sm:grid-cols-3 lg:grid-cols-6">
-        <FactItem label="Proof System" value={e.proofSystem} />
-        <FactItem label="VM" value={e.vm} />
+        <FactItem label="Proof System" value={e.proofSystem} glossaryTerms={proofSystemTerms} />
+        <FactItem label="VM" value={e.vm} glossaryTerms={vmTerms} />
         <FactItem label="Languages" value={e.languages.join(", ")} />
         <FactItem label="Token" value={e.nativeToken ?? "None"} />
         <FactItem label="Foundation" value={e.foundation} />

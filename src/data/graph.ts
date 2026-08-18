@@ -75,7 +75,9 @@ const VM_FAMILIES: { id: string; label: string; description: string }[] = [
   { id: "mina-zkapps", label: "Mina zkApps", description: "Account-model VM for o1js zkApps." },
 ];
 
-const ECOSYSTEM_VM: Record<string, string[]> = {
+/** Ecosystem slug -> raw VM-family ids (same ids the `/primitives` glossary
+ * uses), for cross-linking a curated `vm` fact to its glossary entry. */
+export const ECOSYSTEM_VM: Record<string, string[]> = {
   starknet: ["cairo-vm"],
   linea: ["zkevm"],
   "polygon-zkevm": ["zkevm"],
@@ -99,7 +101,9 @@ const PROOF_SYSTEMS: { id: string; label: string; description: string }[] = [
   { id: "snark", label: "SNARK (other)", description: "A zk-SNARK construction not otherwise named above." },
 ];
 
-const ECOSYSTEM_PROOF_SYSTEM: Record<string, string[]> = {
+/** Ecosystem slug -> raw proof-system ids (same ids the `/primitives`
+ * glossary uses), for cross-linking a curated `proofSystem` fact. */
+export const ECOSYSTEM_PROOF_SYSTEM: Record<string, string[]> = {
   starknet: ["stark", "fri"],
   zksync: ["plonk", "stark", "fri"],
   aztec: ["plonk"],
