@@ -1,9 +1,6 @@
-import { expect, test } from "@playwright/test";
-import { trackPageErrors } from "./utils";
+import { expect, test } from "./utils";
 
-test("the compare tool renders a default comparison", async ({ page }) => {
-  const tracker = trackPageErrors(page);
-
+test("the compare tool renders a default comparison", async ({ page, errorTracker }) => {
   // No ?ids= — CompareTool defaults to the top-2-ranked ecosystems.
   await page.goto("/compare");
 
@@ -12,5 +9,5 @@ test("the compare tool renders a default comparison", async ({ page }) => {
   await expect(page.getByRole("cell", { name: "Adoption", exact: true })).toBeVisible();
   await expect(page.getByRole("cell", { name: "Contributors", exact: true })).toBeVisible();
 
-  expect(tracker.errors).toEqual([]);
+  expect(errorTracker.errors).toEqual([]);
 });

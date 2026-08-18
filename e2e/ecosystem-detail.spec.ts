@@ -1,9 +1,9 @@
-import { expect, test } from "@playwright/test";
-import { trackPageErrors } from "./utils";
+import { expect, test } from "./utils";
 
-test("an ecosystem page opens from the leaderboard and renders real data", async ({ page }) => {
-  const tracker = trackPageErrors(page);
-
+test("an ecosystem page opens from the leaderboard and renders real data", async ({
+  page,
+  errorTracker,
+}) => {
   await page.goto("/");
   const firstEcosystemLink = page.locator('a[href^="/ecosystems/"]').first();
   const href = await firstEcosystemLink.getAttribute("href");
@@ -15,5 +15,5 @@ test("an ecosystem page opens from the leaderboard and renders real data", async
   await expect(page.getByRole("heading", { name: "Developer Health" })).toBeVisible();
   await expect(page.getByRole("heading", { name: "Health breakdown" })).toBeVisible();
 
-  expect(tracker.errors).toEqual([]);
+  expect(errorTracker.errors).toEqual([]);
 });
