@@ -66,7 +66,12 @@ export function HealthRing({
         />
       </svg>
       <div className="absolute inset-0 flex flex-col items-center justify-center">
-        <span className="font-data text-[2.1rem] font-semibold leading-none text-foreground">
+        {/* Computed from live data -- can legitimately tick between server
+            render and hydration. */}
+        <span
+          className="font-data text-[2.1rem] font-semibold leading-none text-foreground"
+          suppressHydrationWarning
+        >
           {score}
         </span>
         <span className="font-data mt-1 text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
@@ -82,7 +87,7 @@ export function HealthBadge({ score }: { score: number }) {
   const band = healthBand(score);
   return (
     <Badge variant={band.token} className="gap-1.5">
-      <span className="font-data font-semibold">{score}</span>
+      <span className="font-data font-semibold" suppressHydrationWarning>{score}</span>
       <span className="opacity-50">·</span>
       {band.label}
     </Badge>

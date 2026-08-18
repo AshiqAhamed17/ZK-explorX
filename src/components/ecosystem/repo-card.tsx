@@ -25,11 +25,13 @@ export function RepoCard({ repo }: { repo: RepoCoreStat }) {
         </div>
       </div>
       <div className="flex shrink-0 items-center gap-3 text-xs text-muted-foreground">
-        <span className="flex items-center gap-1">
+        {/* Live GitHub counts -- can legitimately tick between server
+            render and hydration, same reasoning as the timeAgo span below. */}
+        <span className="flex items-center gap-1" suppressHydrationWarning>
           <Star className="size-3.5" />
           {formatCompact(repo.stars)}
         </span>
-        <span className="hidden items-center gap-1 sm:flex">
+        <span className="hidden items-center gap-1 sm:flex" suppressHydrationWarning>
           <GitFork className="size-3.5" />
           {formatCompact(repo.forks)}
         </span>

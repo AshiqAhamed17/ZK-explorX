@@ -177,6 +177,9 @@ export function CompareTool({
                                 "px-4 py-2.5 text-right font-data",
                                 isBest ? "font-semibold text-foreground" : "text-muted-foreground",
                               )}
+                              // Live GitHub/DefiLlama data -- can legitimately
+                              // tick between server render and hydration.
+                              suppressHydrationWarning
                             >
                               {v === undefined ? "—" : row.format(v)}
                             </td>

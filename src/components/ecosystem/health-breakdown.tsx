@@ -29,7 +29,7 @@ export function HealthBreakdown({ health }: { health: HealthBreakdownType }) {
                   {weight}%
                 </span>
               </span>
-              <span className="tabular-nums font-medium">{value}</span>
+              <span className="tabular-nums font-medium" suppressHydrationWarning>{value}</span>
             </div>
             <div className="h-1.5 overflow-hidden rounded-full bg-secondary">
               <div

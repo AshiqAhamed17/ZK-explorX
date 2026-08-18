@@ -116,19 +116,26 @@ export function Leaderboard({ ranked }: { ranked: RankedEcosystem[] }) {
               </div>
             </div>
 
-            <div className={cn("justify-self-end font-data text-sm font-semibold md:justify-self-start", TOKEN_TEXT[band.token])}>
+            {/* Every value below is live-fetched (GitHub/DefiLlama) and can
+                legitimately tick between the server render and hydration —
+                suppressHydrationWarning is React's documented escape hatch
+                for exactly that, not a blanket mismatch suppressor. */}
+            <div
+              className={cn("justify-self-end font-data text-sm font-semibold md:justify-self-start", TOKEN_TEXT[band.token])}
+              suppressHydrationWarning
+            >
               {health.score}
             </div>
-            <div className="hidden justify-self-end font-data text-sm text-muted-foreground md:block">
+            <div className="hidden justify-self-end font-data text-sm text-muted-foreground md:block" suppressHydrationWarning>
               {r.adoption ?? "—"}
             </div>
-            <div className="hidden justify-self-end font-data text-sm md:block">
+            <div className="hidden justify-self-end font-data text-sm md:block" suppressHydrationWarning>
               {formatCompact(metrics.stars)}
             </div>
-            <div className="hidden justify-self-end font-data text-sm text-muted-foreground md:block">
+            <div className="hidden justify-self-end font-data text-sm text-muted-foreground md:block" suppressHydrationWarning>
               {formatCompact(metrics.commits90d)}
             </div>
-            <div className="hidden justify-self-end font-data text-sm md:block">
+            <div className="hidden justify-self-end font-data text-sm md:block" suppressHydrationWarning>
               {r.tvl ? formatUsd(r.tvl.current) : <span className="text-muted-foreground">—</span>}
             </div>
             <div className="hidden w-24 justify-self-end md:block">

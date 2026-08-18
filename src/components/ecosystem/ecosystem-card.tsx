@@ -47,14 +47,16 @@ export function EcosystemCard({ ranked }: { ranked: RankedEcosystem }) {
         <Sparkline data={metrics.weeklyCommits} color={color} height={36} />
       </div>
 
+      {/* Live GitHub counts -- can legitimately tick between server render
+          and hydration. */}
       <div className="flex items-center gap-4 text-xs text-muted-foreground">
         <span className="flex items-center gap-1">
           <Star className="size-3.5" />
-          <span className="font-data">{formatCompact(metrics.stars)}</span>
+          <span className="font-data" suppressHydrationWarning>{formatCompact(metrics.stars)}</span>
         </span>
         <span className="flex items-center gap-1">
           <GitCommitHorizontal className="size-3.5" />
-          <span className="font-data">{formatCompact(metrics.commits90d)}</span>
+          <span className="font-data" suppressHydrationWarning>{formatCompact(metrics.commits90d)}</span>
           <span className="opacity-70">/90d</span>
         </span>
         <span className="ml-auto text-primary opacity-0 transition-opacity group-hover:opacity-100">

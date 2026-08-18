@@ -182,12 +182,17 @@ export default async function EcosystemPage({
           <div className="flex items-center gap-5">
             <HealthRing score={health.score} />
             <div className="flex flex-col gap-1 text-sm">
-              <span className={`font-medium ${BAND_TEXT[band.token]}`}>{band.label}</span>
-              <span className="font-data text-muted-foreground">
+              {/* Health score/rank/adoption are all derived from live data
+                  that can legitimately tick between server render and
+                  hydration. */}
+              <span className={`font-medium ${BAND_TEXT[band.token]}`} suppressHydrationWarning>
+                {band.label}
+              </span>
+              <span className="font-data text-muted-foreground" suppressHydrationWarning>
                 Rank {rank} / {allSlugs.length}
               </span>
               {adoption !== undefined ? (
-                <span className="font-data text-muted-foreground">
+                <span className="font-data text-muted-foreground" suppressHydrationWarning>
                   Adoption {adoption}
                 </span>
               ) : null}

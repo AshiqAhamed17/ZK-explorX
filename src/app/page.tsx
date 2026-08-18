@@ -48,7 +48,12 @@ export default async function HomePage() {
                 <dt className="font-data text-[10px] uppercase tracking-wider text-muted-foreground">
                   {s.label}
                 </dt>
-                <dd className="font-data text-2xl font-semibold">{s.value}</dd>
+                {/* Most of these are aggregated live GitHub/DefiLlama data
+                    -- can legitimately tick between server render and
+                    hydration. */}
+                <dd className="font-data text-2xl font-semibold" suppressHydrationWarning>
+                  {s.value}
+                </dd>
               </div>
             ))}
           </dl>
