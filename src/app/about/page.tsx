@@ -140,9 +140,9 @@ export default function AboutPage() {
       <Section title="Roadmap">
         <p>
           Shipped so far: the health leaderboard, per-ecosystem dashboards, a
-          project explorer, live TVL and adoption, and side-by-side compare.
-          Planned next: historical health/star trends backed by a datastore,
-          full-text search, and an interactive ecosystem knowledge graph.
+          project explorer, live TVL and adoption, side-by-side compare,
+          historical health trends, an interactive knowledge graph, and a
+          proof-system/VM glossary. Planned next: full-text search.
         </p>
       </Section>
 

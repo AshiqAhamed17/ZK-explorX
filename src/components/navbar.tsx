@@ -9,6 +9,7 @@ const NAV_LINKS = [
   { href: "/compare", label: "Compare" },
   { href: "/graph", label: "Graph" },
   { href: "/proof-lab", label: "Proof Lab" },
+  { href: "/primitives", label: "Primitives" },
   { href: "/about", label: "Methodology" },
 ];
 
