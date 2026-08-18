@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 import { OnchainPulse } from "@/components/proof-lab/onchain-pulse";
 import { ProofLab } from "@/components/proof-lab/proof-lab";
 
@@ -24,6 +26,12 @@ export default function ProofLabPage() {
           like proving you&apos;re old enough without revealing your age — with a real proof
           generated entirely on your device.
         </p>
+        <Link
+          href="/proof-lab/how-it-works"
+          className="mt-2 inline-flex items-center gap-1 text-sm text-primary hover:underline"
+        >
+          How it works <ArrowRight className="size-3.5" />
+        </Link>
       </div>
 
       <div className="mt-6">
