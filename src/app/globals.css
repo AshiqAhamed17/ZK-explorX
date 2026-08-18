@@ -67,7 +67,13 @@
   --popover-foreground: #ecedee;
 
   --primary: #7c6cff;
-  --primary-foreground: #ffffff;
+  /* Was #ffffff (3.86:1 against --primary, WCAG AA needs 4.5:1 for
+     normal-size text -- found by Lighthouse). --primary itself also does
+     double duty as plain link/text color directly on --background, where
+     it already had good contrast, so it's the button text that needed to
+     change, not the shared brand color. Reusing --background instead of a
+     new color keeps the palette tight. */
+  --primary-foreground: var(--background);
 
   --secondary: #17181b;
   --secondary-foreground: #ecedee;
@@ -90,7 +96,9 @@
   --eco-zksync: #3987e5;
   --eco-aleo: #199e70;
   --eco-scroll: #c98500;
-  --eco-risc-zero: #008300;
+  /* was #008300 (identical to the light step) -- Lighthouse caught it
+     failing text contrast (3.79:1) against the dark card surface. */
+  --eco-risc-zero: #22b033;
   --eco-polygon-zkevm: #9085e9;
   --eco-mina: #e66767;
   --eco-aztec: #d55181;

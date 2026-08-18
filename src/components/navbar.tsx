@@ -24,7 +24,7 @@ export function Navbar() {
           <span className="font-display text-[15px] font-semibold tracking-tight">
             ZK-explor<span className="text-primary">X</span>
           </span>
-          <span className="font-data hidden text-[10px] uppercase tracking-widest text-muted-foreground/70 sm:inline">
+          <span className="font-data hidden text-[10px] uppercase tracking-widest text-muted-foreground sm:inline">
             ·&nbsp; zk index
           </span>
         </Link>

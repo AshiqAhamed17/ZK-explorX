@@ -23,7 +23,10 @@ export const ECOSYSTEM_COLORS: Record<string, EcoColor> = {
   zksync: { light: "#2a78d6", dark: "#3987e5" }, // blue
   aleo: { light: "#1baf7a", dark: "#199e70" }, // aqua
   scroll: { light: "#eda100", dark: "#c98500" }, // yellow
-  "risc-zero": { light: "#008300", dark: "#008300" }, // green
+  // dark was identical to light (#008300), the only ecosystem never given a
+  // dark-tuned value -- Lighthouse's accessibility audit caught it failing
+  // text contrast (3.79:1) against the dark card surface (needs 4.5:1).
+  "risc-zero": { light: "#008300", dark: "#22b033" }, // green
   "polygon-zkevm": { light: "#4a3aa7", dark: "#9085e9" }, // violet
   mina: { light: "#e34948", dark: "#e66767" }, // red
   aztec: { light: "#e87ba4", dark: "#d55181" }, // magenta

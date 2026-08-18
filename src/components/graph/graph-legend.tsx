@@ -34,7 +34,7 @@ export function GraphLegend({
           >
             <Icon className="size-3.5" />
             {meta.label}
-            <span className="text-muted-foreground/70">{counts[kind] ?? 0}</span>
+            <span className="text-muted-foreground">{counts[kind] ?? 0}</span>
           </button>
         );
       })}

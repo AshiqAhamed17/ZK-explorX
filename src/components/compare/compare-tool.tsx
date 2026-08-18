@@ -193,7 +193,7 @@ export function CompareTool({
             </div>
 
             <div className="rounded-xl border border-border bg-card p-5">
-              <h3 className="font-display text-sm font-medium">Health profile</h3>
+              <h2 className="font-display text-sm font-medium">Health profile</h2>
               <p className="font-data mb-1 text-xs text-muted-foreground">5 components, normalized vs. peers</p>
               <HealthRadar series={radarSeries} height={280} />
             </div>
@@ -201,7 +201,7 @@ export function CompareTool({
 
           {/* Commit overlay */}
           <div className="rounded-xl border border-border bg-card p-5">
-            <h3 className="font-display text-sm font-medium">Weekly commit activity</h3>
+            <h2 className="font-display text-sm font-medium">Weekly commit activity</h2>
             <p className="font-data mb-3 text-xs text-muted-foreground">Last 26 weeks</p>
             <MultiLineChart series={commitSeries} weeks={26} />
           </div>
@@ -209,7 +209,7 @@ export function CompareTool({
           {/* TVL overlay (rollups only) */}
           {tvlSeries.length > 0 ? (
             <div className="rounded-xl border border-border bg-card p-5">
-              <h3 className="font-display text-sm font-medium">TVL trend</h3>
+              <h2 className="font-display text-sm font-medium">TVL trend</h2>
               <p className="font-data mb-3 text-xs text-muted-foreground">
                 Last 90 days · {tvlChosen.map((r) => r.ecosystem.name).join(", ")}
               </p>

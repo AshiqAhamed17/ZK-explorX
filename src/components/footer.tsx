@@ -15,7 +15,7 @@ export function Footer() {
           <Link href="/about" className="hover:text-foreground">
             Methodology
           </Link>
-          <span className="text-muted-foreground/60">
+          <span className="text-muted-foreground">
             Live data via GitHub
           </span>
         </div>
