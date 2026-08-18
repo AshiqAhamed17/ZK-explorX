@@ -144,6 +144,7 @@ nargo compile               # regenerate target/range_proof.json after any chang
 | `npm run dev` | Start the dev server |
 | `npm run build` | Production build (also typechecks) |
 | `npm test` | Run the Vitest unit suite |
+| `npm run test:e2e` | Run Playwright e2e smoke tests (needs `npm run build` first) |
 | `npm run data:validate` | Validate all curated ecosystem data against the Zod schema |
 | `npm run lint` | ESLint |
 | `npm run deploy:sepolia` | Deploy the ZK Proof Lab contracts to Sepolia (see below) |
